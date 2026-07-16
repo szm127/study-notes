@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Google Cloud 基礎まとめ</title>
+
+<style>
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#f5f7fa;
+    margin:40px;
+    line-height:1.8;
+}
+h1{
+    color:#4285F4;
+    border-bottom:4px solid #4285F4;
+}
+details{
+    background:white;
+    margin:15px 0;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+summary{
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+}
+.point{
+    background:#eef7ff;
+    padding:10px;
+    border-left:5px solid #4285F4;
+}
+.example{
+    background:#eefbea;
+    padding:10px;
+    border-left:5px solid green;
+}
+.memo{
+    background:#fff7d6;
+    padding:10px;
+    border-left:5px solid orange;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Google Cloud 基礎まとめ</h1>
+
+<p>
+Google CloudはGoogleが提供するクラウドサービスです。<br>
+データ分析やAI分野に強いことが特徴です。
+</p>
+
+<pre>
+
+Google Cloud
+
+│
+
+├─ Compute Engine（仮想マシン）
+
+│      ├─ ライブマイグレーション
+
+│      └─ プリエンプティブVM
+
+│
+
+└─ AIサービス
+
+       ├─ Vision API
+
+       ├─ AutoML
+
+       └─ AI Platform
+
+</pre>
+
+<hr>
+
+<details open>
+
+<summary>ライブマイグレーション（Live Migration）（ライブ マイグレーション）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+仮想マシンを停止せずに別の物理サーバーへ移動する技術。
+
+</div>
+
+<p>
+
+Google Cloudでは、
+
+物理サーバーのメンテナンスが必要になっても、
+
+仮想マシンを止めずに別のサーバーへ移動できます。
+
+</p>
+
+<div class="example">
+
+利用者はWebサービスを使い続けられます。
+
+裏側ではサーバーだけ引っ越しています。
+
+</div>
+
+<div class="memo">
+
+<b>マイグレーション(Migration)とは？</b>
+
+「移行・引っ越し」という意味です。
+
+ライブマイグレーションは
+
+「動かしたまま引っ越し」
+
+と覚えると分かりやすいです。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>プリエンプティブVM（Preemptible VM）（プリエンプティブ ブイエム）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+途中で停止される可能性がある代わりに、
+
+非常に安く借りられる仮想マシン。
+
+</div>
+
+<div class="example">
+
+向いている仕事
+
+<ul>
+
+<li>動画変換</li>
+
+<li>画像変換</li>
+
+<li>AI学習</li>
+
+<li>大量データ処理</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>向いていない仕事</b>
+
+<ul>
+
+<li>Webサーバー</li>
+
+<li>銀行システム</li>
+
+<li>24時間動かすシステム</li>
+
+</ul>
+
+Googleの都合で停止される可能性があるためです。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Vision API（Cloud Vision API）（クラウド ビジョン エーピーアイ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+画像をAIが解析してくれるサービス。
+
+</div>
+
+<div class="example">
+
+できること
+
+<ul>
+
+<li>文字認識（OCR）</li>
+
+<li>顔検出</li>
+
+<li>物体認識</li>
+
+<li>ロゴ認識</li>
+
+<li>バーコード認識</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+例えば
+
+レシート画像
+
+↓
+
+Vision API
+
+↓
+
+金額や店名を読み取る
+
+ということができます。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>AutoML（オートエムエル）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+プログラミングをほとんどせずにAIモデルを作れるサービス。
+
+</div>
+
+<div class="example">
+
+猫1000枚
+
+犬1000枚
+
+↓
+
+学習
+
+↓
+
+猫・犬を判定するAI完成
+
+</div>
+
+<div class="memo">
+
+AIの知識が少なくても利用しやすいサービスです。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>AI Platform（AI Platform）（エーアイ プラットフォーム）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+自分でAIモデルを開発・学習・公開するためのサービス。
+
+</div>
+
+<div class="example">
+
+Pythonで作ったAI
+
+↓
+
+Google Cloudへ配置
+
+↓
+
+公開
+
+</div>
+
+<div class="memo">
+
+AutoMLより自由度が高い反面、
+
+機械学習の知識が必要です。
+
+※現在は Vertex AI（バーテックス エーアイ）へ機能が統合されています。研修資料が古い場合は「AI Platform」という名称で説明されていることがあります。
+
+</div>
+
+</details>
+
+<hr>
+
+<h2>AIサービスの違い</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+
+<th>サービス</th>
+
+<th>何をする？</th>
+
+<th>対象者</th>
+
+</tr>
+
+<tr>
+
+<td>Vision API</td>
+
+<td>画像を解析する</td>
+
+<td>誰でも</td>
+
+</tr>
+
+<tr>
+
+<td>AutoML</td>
+
+<td>簡単にAIを作る</td>
+
+<td>初心者</td>
+
+</tr>
+
+<tr>
+
+<td>AI Platform</td>
+
+<td>本格的にAI開発</td>
+
+<td>AIエンジニア</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h2>料金イメージ</h2>
+
+<ul>
+
+<li><b>Vision API</b>：画像を何枚解析したかで課金</li>
+
+<li><b>AutoML</b>：学習時間と予測回数で課金</li>
+
+<li><b>AI Platform（Vertex AI）</b>：学習用マシン・GPU・推論時間などで課金</li>
+
+</ul>
+
+<p>
+
+どれも従量課金ですが、
+
+AI Platform（Vertex AI）が最も自由度が高い分、
+
+料金体系も複雑です。
+
+</p>
+
+</body>
+</html>

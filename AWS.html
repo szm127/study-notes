@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AWSまとめ</title>
+
+<style>
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#f5f7fa;
+    margin:40px;
+    line-height:1.8;
+}
+h1{
+    color:#ff9900;
+    border-bottom:4px solid #ff9900;
+}
+details{
+    background:white;
+    margin:15px 0;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+summary{
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+}
+.point{
+    background:#eef7ff;
+    padding:10px;
+    border-left:5px solid #2b7de9;
+}
+.example{
+    background:#eefbea;
+    padding:10px;
+    border-left:5px solid green;
+}
+.memo{
+    background:#fff7d6;
+    padding:10px;
+    border-left:5px solid orange;
+}
+code{
+    background:#eee;
+    padding:2px 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>AWS基礎まとめ</h1>
+
+<p>
+AWSは「家を建てる」イメージで覚えると整理しやすいです。
+</p>
+
+<pre>
+AWS
+│
+├─ VPC（土地）
+│
+├─ サブネット（区画）
+│
+├─ EC2（家）
+│
+├─ ロードバランサー（案内係）
+│
+└─ Route53（住所案内）
+</pre>
+
+<hr>
+
+<details open>
+<summary>アベイラビリティゾーン（Availability Zone）（アベイラビリティ ゾーン）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+データセンターのまとまり。
+
+</div>
+
+<p>
+東京リージョンには複数のAZがあります。
+</p>
+
+<div class="example">
+
+<b>例え</b>
+
+同じ市内に複数の営業所があるイメージ。
+
+1つ停電しても他でサービスを継続できます。
+
+</div>
+
+<div class="memo">
+
+高可用性（止まりにくいシステム）を実現するため、
+EC2を複数AZへ配置することがあります。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>VPC（Virtual Private Cloud）（ブイピーシー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+AWSの中に作る、自分専用のネットワーク。
+
+</div>
+
+<div class="example">
+
+<b>例え</b>
+
+土地。
+
+まず土地(VPC)を買って、
+その中に建物を建てます。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>サブネット（Subnet）（サブネット）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+VPCを区画分けしたもの。
+
+</div>
+
+<div class="example">
+
+<b>例え</b>
+
+住宅街の一区画。
+
+土地(VPC)の中を
+「住宅用」「商業用」に分けるイメージ。
+
+</div>
+
+<div class="memo">
+
+よく聞かれる質問
+
+「VPCとサブネットの違い」
+
+→
+
+VPC＝土地
+
+サブネット＝土地の一区画
+
+</div>
+
+</details>
+
+<details>
+
+<summary>ロードバランサー（Load Balancer）（ロードバランサー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+アクセスを複数サーバーへ振り分ける装置。
+
+</div>
+
+<div class="example">
+
+アクセス1000件
+
+↓
+
+EC2① 500件
+
+EC2② 500件
+
+</div>
+
+<div class="memo">
+
+<b>例え</b>
+
+レジ係。
+
+1人しかいないと行列になりますが、
+複数レジへ案内すると待ち時間が減ります。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>DNS（Domain Name System）（ディー・エヌ・エス）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+ドメイン名をIPアドレスへ変換する仕組み。
+
+</div>
+
+<div class="example">
+
+www.amazon.co.jp
+
+↓
+
+54.xx.xx.xx
+
+</div>
+
+<div class="memo">
+
+<b>例え</b>
+
+スマホの連絡先。
+
+「山田さん」
+
+↓
+
+電話番号
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Elastic（エラスティック）</summary>
+
+<div class="point">
+
+<b>英単語の意味</b>
+
+Elastic＝伸縮自在・弾力がある
+
+</div>
+
+<p>
+
+AWSでは
+
+「必要に応じて増やしたり減らしたりできる」
+
+という意味で使われています。
+
+</p>
+
+<div class="example">
+
+Elastic IP
+
+Elastic Load Balancing
+
+Elastic Beanstalk
+
+など。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Amazon DynamoDB（ダイナモディービー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+高速なNoSQLデータベース。
+
+</div>
+
+<div class="example">
+
+<b>使用例</b>
+
+・オンラインゲームのランキング
+
+・チャット
+
+・ショッピングカート
+
+・IoT
+
+</div>
+
+<div class="memo">
+
+オンラインゲームでは
+
+プレイヤーのスコアが頻繁に更新されます。
+
+DynamoDBは高速なので、
+
+ランキング表示に向いています。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>NoSQL（Not Only SQL）（ノーエスキューエル）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+リレーショナルデータベース（RDB）のような「表形式」に縛られないデータベースです。
+
+</div>
+
+<p><b>なぜ作られた？</b></p>
+
+<p>
+
+従来のRDBは、
+
+・データの整合性が高い
+
+・複雑な検索が得意
+
+という長所があります。
+
+一方で、
+
+SNSやゲームのように大量のデータを高速に読み書きする用途では、
+処理が追いつかなくなることがあります。
+
+そこで生まれたのがNoSQLです。
+
+</p>
+
+<div class="example">
+
+<b>RDBの例</b>
+
+<table border="1">
+
+<tr>
+<th>社員番号</th>
+<th>名前</th>
+<th>部署</th>
+</tr>
+
+<tr>
+<td>1001</td>
+<td>田中</td>
+<td>営業</td>
+</tr>
+
+</table>
+
+列（項目）が全員同じです。
+
+</div>
+
+<div class="example">
+
+<b>NoSQLの例（イメージ）</b>
+
+社員A
+
+<pre>
+{
+名前
+年齢
+部署
+趣味
+}
+</pre>
+
+社員B
+
+<pre>
+{
+名前
+部署
+}
+</pre>
+
+社員ごとに持つ項目が違っても保存できます。
+
+</div>
+
+<div class="example">
+
+<b>どんなサービスで使われる？</b>
+
+<ul>
+
+<li>チャットアプリ</li>
+
+<li>SNS</li>
+
+<li>オンラインゲーム</li>
+
+<li>IoT</li>
+
+<li>ショッピングカート</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>代表的なNoSQL</b>
+
+<ul>
+
+<li>Amazon DynamoDB</li>
+
+<li>MongoDB</li>
+
+<li>Redis</li>
+
+<li>Cassandra</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>RDBとの違い</b>
+
+<table border="1">
+
+<tr>
+<th></th>
+<th>RDB</th>
+<th>NoSQL</th>
+</tr>
+
+<tr>
+<td>データ構造</td>
+<td>表形式</td>
+<td>自由</td>
+</tr>
+
+<tr>
+<td>得意</td>
+<td>整合性</td>
+<td>速度・大量データ</td>
+</tr>
+
+<tr>
+<td>例</td>
+<td>MySQL</td>
+<td>DynamoDB</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b>
+
+NoSQLは
+
+「SQLが使えない」
+
+ではなく
+
+<b>「RDB以外のデータベース」</b>
+
+くらいの理解で十分です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Amazon Route53（ルートフィフティスリー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+AWSのDNSサービス。
+
+</div>
+
+<div class="example">
+
+利用者
+
+↓
+
+Route53
+
+↓
+
+ロードバランサー
+
+↓
+
+EC2
+
+</div>
+
+<div class="memo">
+
+53はDNSで使われるポート番号53から来ています。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>レイテンシー（Latency）（レイテンシー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+通信の遅延時間。
+
+</div>
+
+<div class="example">
+
+東京から東京
+
+→低レイテンシー
+
+東京から海外
+
+→高レイテンシー
+
+</div>
+
+</details>
+
+<details>
+
+<summary>SLA（Service Level Agreement）（エスエルエー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+サービス品質を保証する契約。
+
+</div>
+
+<div class="example">
+
+稼働率99.99%
+
+など。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>列指向データベース（Column-oriented Database）（カラム オリエンテッド データベース）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+データを「行」ではなく「列」ごとに保存するデータベースです。
+
+</div>
+
+<div class="example">
+
+<b>通常（行指向）</b>
+
+<table border="1">
+
+<tr>
+<th>社員</th>
+<th>部署</th>
+<th>給与</th>
+</tr>
+
+<tr>
+<td>田中</td>
+<td>営業</td>
+<td>30万</td>
+</tr>
+
+<tr>
+<td>佐藤</td>
+<td>開発</td>
+<td>35万</td>
+</tr>
+
+</table>
+
+保存イメージ
+
+<pre>
+田中 営業 30万
+佐藤 開発 35万
+</pre>
+
+</div>
+
+<div class="example">
+
+<b>列指向</b>
+
+保存イメージ
+
+<pre>
+社員
+田中
+佐藤
+
+部署
+営業
+開発
+
+給与
+30万
+35万
+</pre>
+
+</div>
+
+<p>
+
+「給与だけ集計したい」
+
+という場合は、
+
+給与の列だけ読めばよいので高速です。
+
+</p>
+
+<div class="example">
+
+<b>向いている用途</b>
+
+<ul>
+
+<li>売上分析</li>
+
+<li>BIツール</li>
+
+<li>データ分析</li>
+
+<li>統計処理</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>向いていない用途</b>
+
+<ul>
+
+<li>銀行システム</li>
+
+<li>ECサイトの注文登録</li>
+
+<li>社員情報の更新</li>
+
+</ul>
+
+更新処理は行指向DBの方が得意です。
+
+</div>
+
+<div class="memo">
+
+<b>代表例</b>
+
+<ul>
+
+<li>Amazon Redshift</li>
+
+<li>Google BigQuery</li>
+
+<li>Snowflake</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>NoSQLとの違い</b>
+
+NoSQLは
+
+「データ構造」の考え方。
+
+列指向DBは
+
+「データの保存方法」の考え方。
+
+全く別の分類です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Amazon EMR（Amazon Elastic MapReduce）（イーエムアール）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+HadoopやSparkを簡単に使えるサービス。
+
+</div>
+
+<div class="example">
+
+数億件のアクセスログ分析
+
+売上分析
+
+ビッグデータ分析
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Apache Hadoop（アパッチ ハドゥープ）</summary>
+
+<div class="point">
+
+大量データを複数台のコンピューターで分散処理する仕組み。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Apache Spark（アパッチ スパーク）</summary>
+
+<div class="point">
+
+Hadoopより高速なデータ分析エンジン。
+
+</div>
+
+<div class="memo">
+
+最近はこちらが使われることも多いです。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>EC2インスタンス（Elastic Compute Cloud）（イーシーツー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+AWS上の仮想サーバー。
+
+</div>
+
+<div class="example">
+
+Windows Server
+
+Ubuntu
+
+など好きなOSを入れられます。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>リザーブドインスタンス</summary>
+
+<div class="point">
+
+長期間使う前提で予約し、
+料金を安くする仕組み。
+
+</div>
+
+<div class="example">
+
+3年間使うことが決まっている
+社内システム向け。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>スポットインスタンス</summary>
+
+<div class="point">
+
+空いているサーバーを格安で借りる仕組み。
+
+</div>
+
+<div class="example">
+
+AI学習
+
+動画変換
+
+大量計算
+
+など途中で止まっても困らない処理。
+
+</div>
+
+<div class="memo">
+
+AWSの都合で停止されることがあります。
+
+その代わり非常に安価です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Amazon Athena（アマゾン アシーナ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+S3上のファイルをSQLで検索できるサービス。
+
+</div>
+
+<div class="example">
+
+CSV
+
+Parquet
+
+JSON
+
+などをSQLで分析できます。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>gz（gzip）（ジーゼット）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+データ圧縮形式。
+
+</div>
+
+<div class="example">
+
+100MB
+
+↓
+
+20MB
+
+のように小さくできます。
+
+</div>
+
+<div class="memo">
+
+Athenaでは
+
+圧縮したCSV(gz)を読み込むこともできます。
+
+容量が減るため、
+保存コストや読み込み時間の削減につながります。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Amazon S3（Amazon Simple Storage Service）（エススリー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+AWS上にファイルを保存するためのサービスです。
+
+</div>
+
+<p>
+
+画像や動画、PDF、CSV、バックアップなど、
+さまざまなファイルを保存できます。
+
+「クラウド上の巨大なハードディスク」
+
+と考えるとイメージしやすいです。
+
+</p>
+
+<div class="example">
+
+<b>保存できるもの</b>
+
+<ul>
+
+<li>画像</li>
+
+<li>動画</li>
+
+<li>PDF</li>
+
+<li>CSV</li>
+
+<li>ログファイル</li>
+
+<li>バックアップ</li>
+
+<li>ホームページのHTML</li>
+
+</ul>
+
+</div>
+
+<div class="example">
+
+<b>S3の構造</b>
+
+<pre>
+S3
+
+└ Bucket（バケット）
+      ├ logo.png
+      ├ report.pdf
+      ├ movie.mp4
+      └ sales.csv
+</pre>
+
+「Bucket（バケット）」は
+ファイルを保存する箱です。
+
+Windowsのフォルダーに近いイメージですが、
+S3では最初にバケットを作り、その中にファイルを保存します。
+
+</div>
+
+<div class="example">
+
+<b>使用例</b>
+
+<ul>
+
+<li>Webサイトの画像保存</li>
+
+<li>バックアップ保存先</li>
+
+<li>ログ保存</li>
+
+<li>Athenaで分析するCSV保存</li>
+
+<li>動画配信</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>Athenaとの関係</b>
+
+Athenaは
+
+S3に保存されたCSVやJSONなどを
+SQLで分析するサービスです。
+
+つまり
+
+<pre>
+CSV
+
+↓
+
+S3
+
+↓
+
+Athena
+
+↓
+
+SQLで分析
+</pre>
+
+という流れになります。
+
+</div>
+
+<div class="memo">
+
+<b>料金</b>
+
+主に
+
+<ul>
+
+<li>保存容量</li>
+
+<li>データ転送量</li>
+
+<li>アクセス回数</li>
+
+</ul>
+
+によって課金されます。
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b>
+
+S3は「データベース」ではありません。
+
+ファイルを保存する場所です。
+
+社員一覧を保存するならRDSやDynamoDB、
+
+画像やPDFを保存するならS3、
+
+という使い分けになります。
+
+</div>
+
+</details>
+
+</body>
+</html>

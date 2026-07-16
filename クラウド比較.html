@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>主要クラウドサービス比較表</title>
+
+<style>
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    margin:40px;
+    line-height:1.8;
+    background:#f5f7fa;
+}
+h1{
+    color:#333;
+    border-bottom:4px solid #333;
+}
+table{
+    border-collapse:collapse;
+    width:100%;
+    background:white;
+    margin:20px 0;
+}
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+}
+th{
+    background:#005bac;
+    color:white;
+}
+tr:nth-child(even){
+    background:#f8f8f8;
+}
+.point{
+    background:#eef7ff;
+    padding:15px;
+    border-left:5px solid #0078d4;
+    margin:20px 0;
+}
+.memo{
+    background:#fff7d6;
+    padding:15px;
+    border-left:5px solid orange;
+    margin:20px 0;
+}
+pre{
+    background:#fff;
+    padding:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>主要クラウドサービス比較表</h1>
+
+<div class="point">
+
+まずは
+
+<b>「役割」</b>
+
+で覚えることが重要です。
+
+サービス名は違っても、
+役割はほぼ同じです。
+
+</div>
+
+<table>
+
+<tr>
+<th>役割</th>
+<th>AWS</th>
+<th>Azure</th>
+<th>Google Cloud</th>
+</tr>
+
+<tr>
+<td>仮想サーバー</td>
+<td>EC2</td>
+<td>Virtual Machines</td>
+<td>Compute Engine</td>
+</tr>
+
+<tr>
+<td>仮想ネットワーク</td>
+<td>VPC</td>
+<td>Virtual Network（VNet）</td>
+<td>VPC</td>
+</tr>
+
+<tr>
+<td>サブネット</td>
+<td>Subnet</td>
+<td>Subnet</td>
+<td>Subnet</td>
+</tr>
+
+<tr>
+<td>ロードバランサー</td>
+<td>Elastic Load Balancing（ELB）</td>
+<td>Azure Load Balancer</td>
+<td>Cloud Load Balancing</td>
+</tr>
+
+<tr>
+<td>DNS</td>
+<td>Route 53</td>
+<td>Azure DNS</td>
+<td>Cloud DNS</td>
+</tr>
+
+<tr>
+<td>オブジェクトストレージ</td>
+<td>S3</td>
+<td>Blob Storage</td>
+<td>Cloud Storage</td>
+</tr>
+
+<tr>
+<td>リレーショナルDB</td>
+<td>RDS</td>
+<td>Azure SQL Database</td>
+<td>Cloud SQL</td>
+</tr>
+
+<tr>
+<td>NoSQL DB</td>
+<td>DynamoDB</td>
+<td>Cosmos DB</td>
+<td>Firestore</td>
+</tr>
+
+<tr>
+<td>データ分析</td>
+<td>Athena</td>
+<td>Synapse Analytics</td>
+<td>BigQuery</td>
+</tr>
+
+<tr>
+<td>ビッグデータ分析</td>
+<td>EMR</td>
+<td>HDInsight</td>
+<td>Dataproc</td>
+</tr>
+
+<tr>
+<td>AIサービス</td>
+<td>Amazon SageMaker</td>
+<td>Azure AI</td>
+<td>Vertex AI</td>
+</tr>
+
+<tr>
+<td>ユーザー認証・ID管理</td>
+<td>IAM</td>
+<td>Microsoft Entra ID<br>(旧Azure Active Directory)</td>
+<td>Cloud Identity</td>
+</tr>
+
+<tr>
+<td>監視</td>
+<td>CloudWatch</td>
+<td>Azure Monitor</td>
+<td>Cloud Monitoring</td>
+</tr>
+
+</table>
+
+<h2>システムを作る流れ</h2>
+
+<pre>
+
+① VPC / VNet
+（土地を作る）
+
+        ↓
+
+② サブネット
+（土地を区画整理）
+
+        ↓
+
+③ 仮想サーバー
+（EC2・VM・Compute Engine）
+
+        ↓
+
+④ アプリケーションを配置
+
+        ↓
+
+⑤ データベース
+
+        ↓
+
+⑥ ストレージ
+（画像・動画・PDF）
+
+        ↓
+
+⑦ ロードバランサー
+
+        ↓
+
+⑧ DNS
+
+利用者がアクセス
+
+</pre>
+
+<div class="memo">
+
+<b>土地に例えると</b>
+
+<ul>
+
+<li>VPC・VNet ＝ 土地</li>
+
+<li>サブネット ＝ 土地区画</li>
+
+<li>EC2・VM・Compute Engine ＝ 家</li>
+
+<li>ロードバランサー ＝ 案内係</li>
+
+<li>DNS ＝ 住所検索</li>
+
+<li>S3・Blob・Cloud Storage ＝ 倉庫</li>
+
+<li>RDS・Cloud SQLなど ＝ 台帳（データベース）</li>
+
+</ul>
+
+</div>
+
+<h2>サブ講師向け暗記ポイント</h2>
+
+<table>
+
+<tr>
+<th>役割</th>
+<th>まず覚えるサービス</th>
+</tr>
+
+<tr>
+<td>仮想サーバー</td>
+<td>EC2</td>
+</tr>
+
+<tr>
+<td>ストレージ</td>
+<td>S3</td>
+</tr>
+
+<tr>
+<td>ネットワーク</td>
+<td>VPC</td>
+</tr>
+
+<tr>
+<td>ロードバランサー</td>
+<td>ELB</td>
+</tr>
+
+<tr>
+<td>DNS</td>
+<td>Route 53</td>
+</tr>
+
+<tr>
+<td>RDB</td>
+<td>RDS</td>
+</tr>
+
+<tr>
+<td>NoSQL</td>
+<td>DynamoDB</td>
+</tr>
+
+<tr>
+<td>分析</td>
+<td>Athena</td>
+</tr>
+
+</table>
+
+<div class="point">
+
+<b>講師から見ると…</b>
+
+AWS・Azure・Google Cloudはサービス名こそ違いますが、
+
+「サーバー」「ネットワーク」「ストレージ」「データベース」「DNS」
+
+といった<b>役割は共通</b>です。
+
+そのため、
+
+<b>「まず役割を理解して、そのあと各クラウドでのサービス名を覚える」</b>
+
+という順番で学習すると混乱しにくくなります。
+
+</div>
+
+</body>
+</html>

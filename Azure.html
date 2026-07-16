@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Azure 基礎まとめ</title>
+
+<style>
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#f5f7fa;
+    margin:40px;
+    line-height:1.8;
+}
+h1{
+    color:#0078D4;
+    border-bottom:4px solid #0078D4;
+}
+details{
+    background:white;
+    margin:15px 0;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+summary{
+    cursor:pointer;
+    font-size:20px;
+    font-weight:bold;
+}
+.point{
+    background:#eef7ff;
+    padding:10px;
+    border-left:5px solid #0078D4;
+}
+.example{
+    background:#eefbea;
+    padding:10px;
+    border-left:5px solid green;
+}
+.memo{
+    background:#fff7d6;
+    padding:10px;
+    border-left:5px solid orange;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Azure 基礎まとめ</h1>
+
+<p>
+AzureはMicrosoftが提供するクラウドサービスです。<br>
+Windowsとの相性が非常によく、企業システムでよく利用されています。
+</p>
+
+<pre>
+Azure
+│
+├─ サブスクリプション（契約）
+│
+├─ 仮想ネットワーク（VNet）
+│     └─ サブネット
+│
+├─ 仮想マシン
+│      ├─ Windows Server
+│      └─ Ubuntu/CentOS
+│
+└─ Active Directory
+</pre>
+
+<hr>
+
+<details open>
+<summary>Windows Server（ウィンドウズ サーバー）</summary>
+
+<div class="point">
+<b>一言でいうと</b><br>
+サーバー向けのWindowsです。
+</div>
+
+<p>
+普段使うWindows 11は個人向けですが、
+Windows Serverは企業でサーバーとして使うためのOSです。
+</p>
+
+<div class="example">
+<b>使用例</b>
+
+<ul>
+<li>ファイルサーバー</li>
+<li>社内Webサーバー</li>
+<li>Active Directoryサーバー</li>
+<li>データベースサーバー</li>
+</ul>
+</div>
+
+<div class="memo">
+<b>例え</b><br>
+
+Windows11＝家庭用車
+
+Windows Server＝トラック
+
+どちらも車ですが、
+用途が違います。
+</div>
+
+</details>
+
+<details>
+
+<summary>Hyper-V（ハイパーブイ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+Windowsで仮想マシンを動かすためのハイパーバイザー(制御プログラム)。
+
+</div>
+
+<p>
+
+1台のPCの中に
+複数のOSを動かせます。
+
+</p>
+
+<div class="example">
+
+Windows
+
+↓
+
+Hyper-V
+
+↓
+
+Windows Server
+
+Ubuntu
+
+CentOS
+
+などを同時に動かせます。
+
+</div>
+
+<div class="memo">
+
+AWSにもAzureにも仮想マシンがありますが、
+
+Hyper-Vは
+
+「その土台」
+
+になっている技術です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>CentOS（セントオーエス）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+サーバーでよく使われてきたLinuxです。
+
+</div>
+
+<div class="example">
+
+Webサーバー
+
+データベース
+
+メールサーバー
+
+など。
+
+</div>
+
+<div class="memo">
+
+最近はCentOSの開発方針が変わったため、
+
+Rocky LinuxやAlmaLinuxへ移行する企業も増えています。
+
+「CentOSというLinuxがある」
+
+くらい知っていれば十分です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Ubuntu（ウブントゥ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+初心者にも人気のLinux。
+
+</div>
+
+<div class="example">
+
+AWS EC2
+
+Azure VM
+
+GCP Compute Engine
+
+などでも非常によく使われます。
+
+</div>
+
+<div class="memo">
+
+研修や開発環境では
+Ubuntuが登場することが多いです。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Linux（リナックス）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+無料で利用できる代表的なOS（オペレーティングシステム）の一つです。
+
+</div>
+
+<p>
+
+OS（オペレーティングシステム）とは、
+パソコンやサーバーを動かすための基本ソフトウェアです。
+
+私たちが普段使うWindowsやmacOSと同じ仲間で、
+Linuxは特にサーバーやクラウド環境で広く利用されています。
+
+</p>
+
+<div class="example">
+
+<b>代表的なOS</b>
+
+<ul>
+
+<li>Windows</li>
+
+<li>macOS</li>
+
+<li>Linux</li>
+
+<li>Android（Linuxをベースに開発）</li>
+
+</ul>
+
+</div>
+
+<div class="example">
+
+<b>Linuxにはさまざまな種類（ディストリビューション）がある</b>
+
+<pre>
+Linux
+├ Ubuntu
+├ CentOS
+├ Rocky Linux
+├ AlmaLinux
+├ Debian
+└ Red Hat Enterprise Linux（RHEL）
+</pre>
+
+「Linux」というOSが1つあるのではなく、
+Linuxをもとに作られたさまざまな種類があります。
+
+Windowsでいうと、
+「Windows 10」「Windows 11」のような違いではなく、
+同じ土台から作られた別の製品というイメージです。
+
+</div>
+
+<div class="example">
+
+<b>クラウドでの利用例</b>
+
+<ul>
+
+<li>AWS EC2でUbuntuを起動する</li>
+
+<li>Azure VMでRocky Linuxを利用する</li>
+
+<li>Google CloudでDebianを利用する</li>
+
+</ul>
+
+企業のクラウド環境では、
+Windows ServerよりLinuxが選ばれることも多くあります。
+
+</div>
+
+<div class="memo">
+
+<b>Linuxがサーバーでよく使われる理由</b>
+
+<ul>
+
+<li>無料で利用できるものが多い</li>
+
+<li>動作が軽い</li>
+
+<li>安定性が高く、長時間稼働に向いている</li>
+
+<li>カスタマイズしやすい</li>
+
+<li>クラウドサービスとの相性が良い</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>Windowsとの違い</b>
+
+<table border="1" cellpadding="5">
+
+<tr>
+<th>項目</th>
+<th>Windows</th>
+<th>Linux</th>
+</tr>
+
+<tr>
+<td>主な用途</td>
+<td>個人PC・企業PC</td>
+<td>サーバー・クラウド</td>
+</tr>
+
+<tr>
+<td>操作方法</td>
+<td>GUI（画面操作）が中心</td>
+<td>CUI（コマンド操作）が中心</td>
+</tr>
+
+<tr>
+<td>費用</td>
+<td>ライセンスが必要</td>
+<td>無料のものが多い</td>
+</tr>
+
+</table>
+
+※Linuxにも画面操作（GUI）はありますが、サーバーではコマンド操作がよく使われます。
+
+</div>
+
+<div class="memo">
+
+<b>例え</b><br>
+
+OSを「自動車」とすると、
+
+<ul>
+
+<li>Windows：街乗り向けの乗用車</li>
+
+<li>Linux：荷物をたくさん運べるトラック</li>
+
+</ul>
+
+どちらも車ですが、得意な用途が違います。
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b><br>
+
+受講者から
+
+「UbuntuとLinuxって違うんですか？」
+
+と聞かれたら、
+
+<b>「UbuntuはLinuxの一種です。」</b>
+
+と答えれば十分です。
+
+また、
+
+「CentOSやRocky LinuxもLinuxの一種です。」
+
+まで説明できると理解が深まります。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>ネットワーク・仮想ネットワーク・サブネット</summary>
+
+<div class="point">
+
+<b>ネットワーク</b>
+
+コンピューター同士が通信できる仕組み。
+
+</div>
+
+<div class="example">
+
+会社のLAN
+
+家庭のWi-Fi
+
+インターネット
+
+すべてネットワークです。
+
+</div>
+
+<hr>
+
+<div class="point">
+
+<b>仮想ネットワーク（Virtual Network：VNet）（バーチャル ネットワーク）</b>
+
+Azure上に作る自分専用のネットワーク。
+
+</div>
+
+<div class="example">
+
+AWSのVPCとほぼ同じ役割です。
+
+</div>
+
+<hr>
+
+<div class="point">
+
+<b>サブネット（Subnet）（サブネット）</b>
+
+仮想ネットワークを区画分けしたもの。
+
+</div>
+
+<div class="memo">
+
+覚え方
+
+ネットワーク
+
+↓
+
+VNet（土地）
+
+↓
+
+サブネット（土地の区画）
+
+↓
+
+仮想マシン（家）
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Active Directory（アクティブ ディレクトリ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+会社のユーザーやPCをまとめて管理する仕組み。
+
+</div>
+
+<div class="example">
+
+社員1000人いる会社で
+
+・ログインID
+
+・パスワード
+
+・所属部署
+
+・利用できるPC
+
+を一括管理できます。
+
+</div>
+
+<div class="memo">
+
+<b>例え</b>
+
+学校の職員室。
+
+先生全員の情報を管理していて、
+
+誰がどの教室を使えるか
+
+などを決めています。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>Azureにおけるサブスクリプション（Subscription）（サブスクリプション）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+Azureを利用するための契約・料金管理の単位。
+
+</div>
+
+<div class="example">
+
+会社では
+
+・開発用
+
+・本番用
+
+・検証用
+
+でサブスクリプションを分けることがあります。
+
+</div>
+
+<div class="memo">
+
+Netflixのサブスクとは少し意味が違います。
+
+Azureでは
+
+「利用料金をまとめる箱」
+
+というイメージです。
+
+その箱の中に
+
+仮想マシン
+
+データベース
+
+ストレージ
+
+などを作ります。
+
+</div>
+
+</details>
+
+</body>
+</html>

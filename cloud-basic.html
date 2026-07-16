@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>クラウド基礎まとめ</title>
+
+<style>
+body{
+    font-family:"Yu Gothic","Meiryo",sans-serif;
+    background:#f5f7fa;
+    margin:40px;
+    line-height:1.8;
+}
+h1{
+    color:#005bac;
+    border-bottom:4px solid #005bac;
+    padding-bottom:10px;
+}
+h2{
+    color:#005bac;
+}
+details{
+    background:white;
+    margin:15px 0;
+    border-radius:10px;
+    padding:15px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+summary{
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.point{
+    background:#e8f4ff;
+    padding:10px;
+    border-left:5px solid #0078d4;
+}
+.memo{
+    background:#fff8dc;
+    padding:10px;
+    border-left:5px solid orange;
+}
+.example{
+    background:#eef9ee;
+    padding:10px;
+    border-left:5px solid green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>クラウド基礎まとめ</h1>
+
+<p>
+サブ講師向けの簡易まとめです。<br>
+「一言で説明できること」を目標にしています。
+</p>
+
+<h2>目次</h2>
+
+<ul>
+<li>マネージドサービス</li>
+<li>IaaS</li>
+<li>PaaS</li>
+<li>SaaS</li>
+<li>覚え方</li>
+<li>ミドルウェア</li>
+<li>ランタイム</li>
+<li>NIC冗長</li>
+<li>ハイパーバイザー</li>
+<li>仮想化基盤を操作するAPI</li>
+<li>REST API</li>
+</ul>
+
+<hr>
+
+<details open>
+<summary>マネージドサービス</summary>
+
+<div class="point">
+<b>一言でいうと</b><br>
+面倒な管理をクラウド事業者が代わりにやってくれるサービス。
+</div>
+
+<p><b>具体例</b></p>
+
+<ul>
+<li>サーバーの更新</li>
+<li>障害対応</li>
+<li>バックアップ</li>
+<li>OSのメンテナンス</li>
+</ul>
+
+<div class="example">
+<b>例え</b><br>
+自分で車を所有するのではなく、カーシェアを利用するイメージ。<br>
+整備は運営会社が行い、自分は運転だけをすればよい。
+</div>
+
+<div class="memo">
+<b>講師メモ</b><br>
+クラウドは「全部自分で管理する」ではなく、
+管理を任せられるところに価値があります。
+</div>
+
+</details>
+
+<details>
+
+<summary>IaaS（Infrastructure as a Service）（インフラストラクチャ・アズ・ア・サービス）</summary>
+
+<div class="point">
+<b>一言でいうと</b><br>
+サーバーだけ借りるサービス。
+</div>
+
+<p><b>利用者が管理するもの</b></p>
+
+<ul>
+<li>OS</li>
+<li>ミドルウェア</li>
+<li>アプリケーション</li>
+</ul>
+
+<p><b>クラウド事業者が管理するもの</b></p>
+
+<ul>
+<li>サーバー本体</li>
+<li>ストレージ</li>
+<li>ネットワーク</li>
+</ul>
+
+<div class="example">
+<b>例</b><br>
+
+Amazon EC2<br>
+Azure Virtual Machines
+</div>
+
+<div class="memo">
+<b>例え</b><br>
+
+更地（土地）だけ借りるイメージ。<br>
+家は自分で建てる。
+</div>
+
+</details>
+
+<details>
+
+<summary>PaaS（Platform as a Service）（プラットフォーム・アズ・ア・サービス）</summary>
+
+<div class="point">
+<b>一言でいうと</b><br>
+
+プログラムを作ることに集中できるサービス。
+</div>
+
+<p>
+OSやミドルウェアの準備はサービス側が行います。
+</p>
+
+<div class="example">
+
+<b>例</b>
+
+<ul>
+<li>Azure App Service</li>
+<li>Google App Engine</li>
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>例え</b>
+
+完成したキッチン付きのレンタル厨房。
+
+料理だけ作ればよい。
+</div>
+
+</details>
+
+<details>
+
+<summary>SaaS（Software as a Service）（ソフトウェア・アズ・ア・サービス）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+完成したソフトをそのまま利用するサービス。
+</div>
+
+<div class="example">
+
+<b>例</b>
+
+<ul>
+
+<li>Microsoft 365</li>
+
+<li>Google Workspace</li>
+
+<li>Zoom</li>
+
+<li>Salesforce</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>例え</b>
+
+レストラン。
+
+料理を作る必要はなく、食べるだけ。
+</div>
+
+</details>
+
+<details>
+
+<summary>IaaS・PaaS・SaaSの覚え方</summary>
+
+<div class="point">
+
+<b>覚える順番</b>
+
+<pre>
+
+SaaS
+完成品を使う
+
+↓
+
+PaaS
+プログラムだけ作る
+
+↓
+
+IaaS
+OSから自分で管理
+
+</pre>
+
+</div>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>種類</th>
+<th>自分でやること</th>
+</tr>
+
+<tr>
+<td>SaaS</td>
+<td>ほとんど何もしない</td>
+</tr>
+
+<tr>
+<td>PaaS</td>
+<td>アプリ開発</td>
+</tr>
+
+<tr>
+<td>IaaS</td>
+<td>OSから上を管理</td>
+</tr>
+
+</table>
+
+<div class="memo">
+
+<b>覚え方</b>
+
+SaaSが一番楽。
+
+IaaSが一番自由。
+
+PaaSはその中間。
+</div>
+
+</details>
+
+<details>
+
+<summary>ミドルウェア（Middleware）（ミドルウェア）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+OSとアプリケーションの間で動き、
+アプリが必要とする共通機能を提供するソフトウェアです。
+
+</div>
+
+<p><b>なぜ必要？</b></p>
+
+<p>
+アプリケーションは、通信やデータベース接続などを
+すべて自分で作るのは大変です。
+
+そのため、共通機能をミドルウェアが担当します。
+</p>
+
+<div class="example">
+
+<b>代表例</b>
+
+<ul>
+
+<li><b>Tomcat</b>：JavaのWebアプリを動かす</li>
+
+<li><b>Apache HTTP Server</b>：Webページを配信する</li>
+
+<li><b>Nginx</b>：Webサーバー・ロードバランサーとして利用</li>
+
+<li><b>MySQL・PostgreSQL</b>：データベース管理</li>
+
+</ul>
+
+</div>
+
+<div class="example">
+
+<b>イメージ</b>
+
+<pre>
+アプリケーション
+      │
+ミドルウェア
+(TomcatやMySQLなど)
+      │
+OS（Windows・Linux）
+      │
+ハードウェア
+</pre>
+
+</div>
+
+<div class="memo">
+
+<b>例え</b><br>
+
+レストランで考えると、
+
+<ul>
+
+<li>OS：建物</li>
+
+<li>ミドルウェア：厨房・レジ・食器洗浄機</li>
+
+<li>アプリ：料理人</li>
+
+</ul>
+
+料理人は厨房があるから料理に集中できます。
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b><br>
+
+「Tomcatって何ですか？」
+
+と聞かれたら、
+
+<b>「JavaのWebアプリを動かすミドルウェアです。」</b>
+
+と言えれば十分です。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>ランタイム（Runtime）（ランタイム）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+プログラムを実行するための環境。
+</div>
+
+<div class="example">
+
+<b>例</b>
+
+JavaならJRE。
+
+PythonならPython本体。
+
+Node.jsもランタイムの一種。
+</div>
+
+<div class="memo">
+
+「Javaを書いただけ」では動かず、
+Javaを実行できる環境が必要です。
+</div>
+
+</details>
+
+<details>
+
+<summary>NIC冗長（Network Interface Card）（エヌアイシー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+ネットワークカードを複数用意して、
+故障しても通信できるようにする仕組み。
+</div>
+
+<div class="example">
+
+会社の電話番号を2つ持つイメージ。
+
+1つ故障してももう片方で連絡できる。
+</div>
+
+</details>
+
+<details>
+
+<summary>ハイパーバイザー（Hypervisor）（ハイパーバイザー）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b>
+
+1台の物理サーバー上で、
+複数の仮想サーバーを動かすためのソフト。
+</div>
+
+<div class="example">
+
+1軒のマンションの中に
+たくさんの部屋があるイメージ。
+
+建物＝物理サーバー
+
+部屋＝仮想マシン
+</div>
+
+</details>
+
+<details>
+
+<summary>仮想化基盤を操作するAPI（Application Programming Interface）（エーピーアイ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+プログラムから仮想マシンやネットワークなどを
+自動で操作するための窓口です。
+
+</div>
+
+<p><b>APIとは？</b></p>
+
+<p>
+
+APIは、ソフトウェア同士がやり取りするためのルールです。
+
+人が画面をクリックしなくても、
+プログラムから命令を送ることができます。
+
+</p>
+
+<div class="example">
+
+<b>AWSの例</b>
+
+<pre>
+APIを呼び出す
+
+↓
+
+EC2を作成
+
+↓
+
+自動で仮想サーバー完成
+</pre>
+
+</div>
+
+<div class="example">
+
+APIでできること
+
+<ul>
+
+<li>仮想マシンを作る</li>
+
+<li>起動する</li>
+
+<li>停止する</li>
+
+<li>削除する</li>
+
+<li>ネットワークを作る</li>
+
+<li>ストレージを追加する</li>
+
+</ul>
+
+</div>
+
+<div class="memo">
+
+<b>例え</b><br>
+
+レストランの注文票です。
+
+店員（プログラム）が
+
+「ラーメン1つ」
+
+と注文票(API)を厨房へ渡すと、
+
+料理人（クラウド）が料理を作ります。
+
+厨房の中でどう作るかは気にしなくてよい、
+というのがAPIの考え方です。
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b><br>
+
+TerraformやAWS CLIなども、
+最終的にはAWSのAPIを利用してクラウドを操作しています。
+
+</div>
+
+</details>
+
+<details>
+
+<summary>REST API（Representational State Transfer API）（レスト エーピーアイ）</summary>
+
+<div class="point">
+
+<b>一言でいうと</b><br>
+
+Webで最も広く使われているAPIの設計ルールです。
+
+</div>
+
+<p>
+
+REST APIでは、
+
+「何を操作したいか(URL)」
+
+と
+
+「何をしたいか(GETやPOSTなど)」
+
+を組み合わせて通信します。
+
+</p>
+
+<div class="example">
+
+<b>基本的な操作</b>
+
+<table border="1" cellpadding="5">
+
+<tr>
+<th>メソッド</th>
+<th>意味</th>
+<th>例</th>
+</tr>
+
+<tr>
+<td>GET</td>
+<td>取得</td>
+<td>社員一覧を見る</td>
+</tr>
+
+<tr>
+<td>POST</td>
+<td>登録</td>
+<td>社員を登録する</td>
+</tr>
+
+<tr>
+<td>PUT</td>
+<td>更新</td>
+<td>社員情報を変更する</td>
+</tr>
+
+<tr>
+<td>DELETE</td>
+<td>削除</td>
+<td>社員を削除する</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="example">
+
+<b>URL例</b>
+
+<pre>
+GET    /employees
+社員一覧を取得
+
+GET    /employees/1001
+社員1001を取得
+
+POST   /employees
+社員を登録
+
+PUT    /employees/1001
+社員1001を更新
+
+DELETE /employees/1001
+社員1001を削除
+</pre>
+
+</div>
+
+<div class="memo">
+
+<b>Spring Bootとの関係</b>
+
+<pre>
+@GetMapping
+
+@PostMapping
+
+@PutMapping
+
+@DeleteMapping
+</pre>
+
+これらのアノテーションは
+REST APIの考え方に沿って作られています。
+
+</div>
+
+<div class="memo">
+
+<b>APIとの違い</b>
+
+APIは「ソフト同士がやり取りする仕組み」の総称です。
+
+REST APIは、そのAPIを作るときの代表的なルール（設計スタイル）の一つです。
+
+つまり、<br>
+
+API<br>
+├ REST API<br>
+├ GraphQL<br>
+├ SOAP<br>
+└ RPC<br>
+
+という関係になります。
+
+</div>
+
+<div class="memo">
+
+<b>講師メモ</b><br>
+
+受講者が「RESTって何ですか？」と聞いてきたら、
+
+<b>「Web APIを作るときのお作法・ルールです」</b>
+
+と答えるとイメージしやすいです。
+
+</div>
+
+</details>
+</body>
+</html>
