@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCP/IP｜語源・例え・具体例で覚える</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #263238;
+      --muted: #64748b;
+      --line: #dbe4ee;
+      --primary: #315c9f;
+      --primary-soft: #eaf1ff;
+      --accent: #d66a3d;
+      --accent-soft: #fff1ea;
+      --green: #3d7a62;
+      --green-soft: #eaf7f1;
+      --yellow: #8a6519;
+      --yellow-soft: #fff8dc;
+      --violet: #6f5aa8;
+      --violet-soft: #f2efff;
+      --shadow: 0 10px 30px rgba(35, 52, 82, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 28px));
+      margin: 24px auto 64px;
+    }
+
+    .hero {
+      padding: 44px 38px;
+      border-radius: 24px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(49, 92, 159, 0.98), rgba(61, 122, 98, 0.95));
+      box-shadow: var(--shadow);
+    }
+
+    .hero .eyebrow {
+      margin: 0 0 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      opacity: 0.92;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 8vw, 4rem);
+      line-height: 1.15;
+    }
+
+    .hero .lead {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: 1.03rem;
+    }
+
+    .hero-key {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 10px 16px;
+      border: 2px solid rgba(255,255,255,0.75);
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: rgba(255,255,255,0.12);
+    }
+
+    section {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 20px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: var(--primary);
+      font-size: clamp(1.35rem, 5vw, 1.7rem);
+      line-height: 1.4;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      color: var(--green);
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    strong {
+      color: #17356f;
+    }
+
+    .one-line {
+      padding: 18px 20px;
+      border-left: 6px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    .term-grid,
+    .group-grid,
+    .compare-grid,
+    .exam-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .term-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .group-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .compare-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .exam-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfdff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .term-card b {
+      display: block;
+      color: var(--primary);
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .flow {
+      display: grid;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .flow div {
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .flow .old {
+      background: #f4f4f5;
+    }
+
+    .flow .arrow {
+      padding: 0;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .flow .goal {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .analogy {
+      padding: 20px;
+      border: 1px solid #f0d3c6;
+      border-radius: 14px;
+      background: var(--accent-soft);
+    }
+
+    .analogy-title {
+      margin-top: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 94px minmax(180px, 1fr) 1.5fr;
+      gap: 14px;
+      align-items: center;
+      padding: 17px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .layer-number {
+      font-weight: 900;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .layer-name {
+      font-weight: 800;
+    }
+
+    .layer-role {
+      color: #475569;
+    }
+
+    .l4 {
+      border-left: 7px solid var(--violet);
+      background: var(--violet-soft);
+    }
+
+    .l3 {
+      border-left: 7px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .l2 {
+      border-left: 7px solid var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .l1 {
+      border-left: 7px solid var(--green);
+      background: var(--green-soft);
+    }
+
+    .mnemonic {
+      padding: 22px;
+      border-radius: 16px;
+      text-align: center;
+      background: var(--primary-soft);
+    }
+
+    .mnemonic .big {
+      margin: 0;
+      font-size: clamp(1.55rem, 7vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+    }
+
+    .memory-map {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .memory-map div {
+      padding: 12px 8px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid #cfd8ef;
+      font-size: 0.9rem;
+    }
+
+    .question-chain,
+    .detail-list,
+    .qa-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .question-chain div {
+      padding: 12px 15px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border-left: 5px solid #9aa9bd;
+    }
+
+    .detail-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .detail-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .role {
+      font-weight: 700;
+    }
+
+    .examples {
+      color: #475569;
+    }
+
+    .analogy-line {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .example-intro {
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: var(--yellow-soft);
+      color: #5e4818;
+    }
+
+    .packet-flow {
+      display: grid;
+      gap: 8px;
+      margin: 18px 0 0;
+    }
+
+    .packet-flow div {
+      padding: 13px 16px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+    }
+
+    .packet-flow .arrow {
+      padding: 0;
+      text-align: center;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      min-width: 820px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--primary-soft);
+      color: #203d7c;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .note {
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #475569;
+      font-size: 0.94rem;
+    }
+
+    .warning {
+      padding: 16px 18px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 12px;
+      background: var(--yellow-soft);
+      color: #5e4818;
+    }
+
+    .compare-card {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .compare-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .qa {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfdff;
+    }
+
+    .qa .q {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .qa .a {
+      margin: 0;
+    }
+
+    .related {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #edf2f7;
+      color: #3f4f63;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .final-box {
+      padding: 22px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary-soft), var(--green-soft));
+    }
+
+    .final-box ul {
+      padding-left: 1.2em;
+      margin-bottom: 0;
+    }
+
+    footer {
+      padding: 28px 10px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        padding: 34px 22px;
+      }
+
+      section {
+        padding: 23px 17px;
+      }
+
+      .term-grid,
+      .group-grid,
+      .compare-grid,
+      .exam-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .layer {
+        grid-template-columns: 78px 1fr;
+      }
+
+      .layer-role {
+        grid-column: 1 / -1;
+      }
+
+      .memory-map {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        width: min(100% - 18px, 1100px);
+      }
+    }
+
+    @media (max-width: 390px) {
+      body {
+        font-size: 15px;
+      }
+
+      .hero {
+        padding: 30px 18px;
+      }
+
+      section {
+        padding: 20px 15px;
+        border-radius: 16px;
+      }
+
+      .layer {
+        padding: 15px;
+        grid-template-columns: 70px 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        width: 100%;
+        margin: 0;
+      }
+
+      section,
+      .hero {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">情報セキュリティマネジメント・基本情報技術者試験・実務理解</p>
+      <h1>TCP/IP</h1>
+      <p class="lead">
+        インターネット通信を支えるルールの集まりを、
+        名前の意味・宅配便の例え・Webサイトを開く流れから理解する。
+      </p>
+      <div class="hero-key">TCPで確実に分けて届け、IPで宛先まで運ぶ</div>
+    </header>
+
+    <section>
+      <h2>1. 一言でいうと</h2>
+      <div class="one-line">
+        TCP/IPとは、コンピュータ同士がネットワークを越えて通信するために使う、複数の通信ルールの集まり。
+      </div>
+      <p>
+        名前にはTCPとIPだけが入っているが、実際にはHTTP、DNS、Ethernetなど、
+        インターネット通信に関係する多くのプロトコルをまとめた仕組みを指す。
+      </p>
+    </section>
+
+    <section>
+      <h2>2. 名前の意味・語源</h2>
+
+      <div class="term-grid">
+        <div class="card term-card">
+          <b>TCP</b>
+          Transmission Control Protocol
+        </div>
+        <div class="card term-card">
+          <b>Transmission</b>
+          送信・伝送。transは「越えて」、missionは「送ること」というイメージ。
+        </div>
+        <div class="card term-card">
+          <b>Control</b>
+          制御。順番、到着確認、再送などを管理する。
+        </div>
+        <div class="card term-card">
+          <b>Protocol</b>
+          通信するときに守る手順や約束事。
+        </div>
+      </div>
+
+      <h3>TCPを日本語にすると</h3>
+      <p>
+        <strong>伝送制御プロトコル</strong>。
+        データを相手のアプリケーションまで、順番を整えながら確実に届けるための通信規約。
+      </p>
+
+      <div class="term-grid">
+        <div class="card term-card">
+          <b>IP</b>
+          Internet Protocol
+        </div>
+        <div class="card term-card">
+          <b>Inter</b>
+          「～の間」「相互に」。異なるネットワーク同士をつなぐ。
+        </div>
+        <div class="card term-card">
+          <b>Network</b>
+          網状につながった通信の仕組み。
+        </div>
+        <div class="card term-card">
+          <b>Protocol</b>
+          宛先の付け方や運び方に関する共通ルール。
+        </div>
+      </div>
+
+      <h3>IPを日本語にすると</h3>
+      <p>
+        <strong>インターネットプロトコル</strong>。
+        IPアドレスを使って、異なるネットワークを越えながら目的地までデータを運ぶための通信規約。
+      </p>
+
+      <div class="note">
+        TCP/IPの「/」は、TCPとIPを組み合わせて使うことを表している。
+        ただし一般には、TCPとIPだけでなく、インターネットで使われるプロトコル群全体を指す。
+      </div>
+    </section>
+
+    <section>
+      <h2>3. なぜ作られたのか</h2>
+
+      <div class="flow">
+        <div class="old">初期のコンピュータネットワークは、それぞれ独自の方式で動いていた</div>
+        <div class="arrow">↓</div>
+        <div class="old">異なる種類のネットワーク同士では、そのまま通信できなかった</div>
+        <div class="arrow">↓</div>
+        <div class="goal">ネットワークの種類が違っても、共通ルールで相互接続できる仕組みが必要になった</div>
+      </div>
+
+      <p>
+        TCP/IPは、特定のメーカーや特定の通信回線だけに依存せず、
+        異なるネットワークをつないで通信することを目指して作られた。
+      </p>
+
+      <div class="analogy">
+        <p class="analogy-title">例え：複数の宅配会社をまたぐ配送</p>
+        <p>
+          地域によって道路や配送会社が違っても、
+          荷物に共通の宛先を付け、受け渡しのルールを決めておけば目的地まで届けられる。
+          TCP/IPも、途中のネットワークの種類が違っていても、
+          共通の宛先と通信ルールでデータを運ぶ。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. 身近な例え：宅配便</h2>
+
+      <div class="group-grid">
+        <div class="card">
+          <h3>IPは住所と配送ルート</h3>
+          <p>
+            IPアドレスという宛先を見て、ルータが次にどこへ送るかを判断する。
+          </p>
+          <p><strong>宅配便：</strong>住所を見て、営業所から営業所へ荷物を運ぶ。</p>
+        </div>
+
+        <div class="card">
+          <h3>TCPは梱包・番号付け・到着確認</h3>
+          <p>
+            大きなデータを分割し、順番を付け、届かなければ再送する。
+          </p>
+          <p><strong>宅配便：</strong>荷物を複数箱に分け、箱番号を付け、足りない箱を送り直す。</p>
+        </div>
+
+        <div class="card">
+          <h3>ポート番号は部署名・部屋番号</h3>
+          <p>
+            同じコンピュータの中で、どのアプリケーションに渡すかを示す。
+          </p>
+          <p><strong>宅配便：</strong>会社の住所だけでなく、「営業部」「302号室」まで指定する。</p>
+        </div>
+
+        <div class="card">
+          <h3>リンク層は今いる場所から次の場所まで</h3>
+          <p>
+            EthernetやWi-Fiを使い、同じネットワーク内の次の機器へ渡す。
+          </p>
+          <p><strong>宅配便：</strong>現在の営業所から、次の営業所まで実際に運ぶ。</p>
+        </div>
+      </div>
+
+      <div class="warning">
+        宅配便の例えは役割をつかむためのもの。
+        実際のネットワークでは、データは箱ではなく、ヘッダを付けたデジタルデータとして扱われる。
+      </div>
+    </section>
+
+    <section>
+      <h2>5. TCP/IPの全体像：4階層モデル</h2>
+      <p>
+        教材では、TCP/IPモデルを次の4階層として整理することが多い。
+        上に行くほど利用者やアプリケーションに近く、下に行くほど通信機器や回線に近い。
+      </p>
+
+      <div class="stack">
+        <div class="layer l4">
+          <div class="layer-number">第4層</div>
+          <div class="layer-name">アプリケーション層</div>
+          <div class="layer-role">利用者が使うサービスと、通信内容のルールを担当する</div>
+        </div>
+        <div class="layer l3">
+          <div class="layer-number">第3層</div>
+          <div class="layer-name">トランスポート層</div>
+          <div class="layer-role">相手のアプリケーションまでデータを届ける</div>
+        </div>
+        <div class="layer l2">
+          <div class="layer-number">第2層</div>
+          <div class="layer-name">インターネット層</div>
+          <div class="layer-role">異なるネットワークを越えて宛先まで運ぶ</div>
+        </div>
+        <div class="layer l1">
+          <div class="layer-number">第1層</div>
+          <div class="layer-name">ネットワークインターフェース層</div>
+          <div class="layer-role">同じネットワーク内で、実際の回線を使って次の機器へ渡す</div>
+        </div>
+      </div>
+
+      <div class="note">
+        最下層は、教材によって「ネットワークインターフェース層」
+        「リンク層」「ネットワークアクセス層」などと呼ばれる。
+        試験では名称が違っても、EthernetやWi-Fiなどを担当する層として判断する。
+      </div>
+    </section>
+
+    <section>
+      <h2>6. 意味のまとまりで覚える</h2>
+
+      <div class="group-grid">
+        <div class="card">
+          <h3>第4層：何をやり取りするか</h3>
+          <p><strong>アプリケーション層</strong></p>
+          <p>Web、メール、名前解決など、利用者に近い通信サービス。</p>
+        </div>
+
+        <div class="card">
+          <h3>第3層：どのアプリへ渡すか</h3>
+          <p><strong>トランスポート層</strong></p>
+          <p>TCP・UDPとポート番号を使い、相手のアプリケーションまで届ける。</p>
+        </div>
+
+        <div class="card">
+          <h3>第2層：どのコンピュータへ運ぶか</h3>
+          <p><strong>インターネット層</strong></p>
+          <p>IPアドレスとルータを使い、異なるネットワークを越える。</p>
+        </div>
+
+        <div class="card">
+          <h3>第1層：次の機器へどう渡すか</h3>
+          <p><strong>ネットワークインターフェース層</strong></p>
+          <p>EthernetやWi-Fiを使って、実際に信号を送る。</p>
+        </div>
+      </div>
+
+      <div class="question-chain">
+        <div><strong>第4層：アプリケーション層</strong> — 何をやり取りしたい？</div>
+        <div><strong>第3層：トランスポート層</strong> — どのアプリケーションへ渡す？</div>
+        <div><strong>第2層：インターネット層</strong> — どのコンピュータへ運ぶ？</div>
+        <div><strong>第1層：ネットワークインターフェース層</strong> — 次の機器へどう送る？</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. 覚え方・語呂合わせ</h2>
+
+      <div class="mnemonic">
+        <p class="big">ア・ト・イ・ネ</p>
+        <p>TCP/IPモデルを第4層から第1層へ、上から順に読む。</p>
+
+        <div class="memory-map">
+          <div><strong>ア</strong><br>第4層<br>アプリケーション</div>
+          <div><strong>ト</strong><br>第3層<br>トランスポート</div>
+          <div><strong>イ</strong><br>第2層<br>インターネット</div>
+          <div><strong>ネ</strong><br>第1層<br>ネットワークインターフェース</div>
+        </div>
+      </div>
+
+      <p class="note">
+        「あと、犬（アトイヌ）」のような無理な文章にはせず、
+        <strong>ア・ト・イ・ネ</strong>をリズムで覚える。
+        意味は「サービス → アプリまで → コンピュータまで → 次の機器まで」。
+      </p>
+    </section>
+
+    <section>
+      <h2>8. 各階層の詳細</h2>
+
+      <div class="detail-list">
+        <article class="detail-card">
+          <h3>第4層：アプリケーション層</h3>
+          <p class="role">
+            Web閲覧、メール送信、ファイル転送、名前解決など、
+            アプリケーションが利用する通信サービスを担当する。
+          </p>
+          <p class="examples">
+            <strong>代表例：</strong>HTTP、HTTPS、DNS、SMTP、POP3、IMAP、FTP、SSH、DHCP
+          </p>
+          <p class="analogy-line">
+            <strong>宅配便の例え：</strong>何を注文するか、どのサービスを利用するかを決める受付窓口。
+          </p>
+          <p>
+            OSI参照モデルのアプリケーション層・プレゼンテーション層・セッション層に相当する機能を、
+            TCP/IPモデルではまとめて扱う。
+          </p>
+        </article>
+
+        <article class="detail-card">
+          <h3>第3層：トランスポート層</h3>
+          <p class="role">
+            ポート番号を使って相手のアプリケーションを識別し、
+            通信方式に応じてデータの分割、順序制御、再送制御などを行う。
+          </p>
+          <p class="examples">
+            <strong>代表例：</strong>TCP、UDP、ポート番号
+          </p>
+          <p class="analogy-line">
+            <strong>宅配便の例え：</strong>荷物を分割し、番号を付け、会社内のどの部署に渡すかを指定する。
+          </p>
+          <p>
+            TCPは信頼性を重視し、UDPは確認処理を減らして速さや軽さを重視する。
+          </p>
+        </article>
+
+        <article class="detail-card">
+          <h3>第2層：インターネット層</h3>
+          <p class="role">
+            IPアドレスを使って送信元と宛先を示し、
+            ルータを経由しながら異なるネットワーク間でデータを運ぶ。
+          </p>
+          <p class="examples">
+            <strong>代表例：</strong>IP、IPv4、IPv6、ICMP、IPアドレス、ルータ
+          </p>
+          <p class="analogy-line">
+            <strong>宅配便の例え：</strong>住所と郵便番号を見ながら、複数の営業所を経由して目的地へ進む。
+          </p>
+          <p>
+            IP自体は、必ず届くことや到着順を保証しない。
+            必要な信頼性は上位のTCPなどが補う。
+          </p>
+        </article>
+
+        <article class="detail-card">
+          <h3>第1層：ネットワークインターフェース層</h3>
+          <p class="role">
+            同じネットワーク内で、MACアドレスや通信媒体を利用し、
+            次の機器までデータを実際に送る。
+          </p>
+          <p class="examples">
+            <strong>代表例：</strong>Ethernet、Wi-Fi、MACアドレス、スイッチ、LANケーブル、電波
+          </p>
+          <p class="analogy-line">
+            <strong>宅配便の例え：</strong>今いる営業所から次の営業所まで、道路やトラックを使って運ぶ。
+          </p>
+          <p>
+            OSI参照モデルのデータリンク層と物理層をまとめた部分として扱われる。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>9. 具体例：ブラウザでWebサイトを開く</h2>
+
+      <div class="example-intro">
+        例として、スマートフォンのブラウザでWebサイトを開く場面を追う。
+        送信時は上位層から下位層へ進み、受信側では下位層から上位層へ戻る。
+      </div>
+
+      <div class="packet-flow">
+        <div>
+          <strong>① 第4層：アプリケーション層</strong><br>
+          ブラウザがURLを受け取り、DNSでドメイン名に対応するIPアドレスを調べる。
+          その後、HTTPまたはHTTPSでWebページを要求する。
+        </div>
+        <div class="arrow">↓</div>
+        <div>
+          <strong>② 第3層：トランスポート層</strong><br>
+          TCPを使う場合、通信相手との接続を準備する。
+          データを分割し、ポート番号を付ける。
+          HTTPSなら一般に宛先ポート番号443を利用する。
+        </div>
+        <div class="arrow">↓</div>
+        <div>
+          <strong>③ 第2層：インターネット層</strong><br>
+          送信元IPアドレスと宛先IPアドレスを付ける。
+          ルータが宛先ネットワークへ向かう次の経路を選ぶ。
+        </div>
+        <div class="arrow">↓</div>
+        <div>
+          <strong>④ 第1層：ネットワークインターフェース層</strong><br>
+          Wi-FiやEthernetを使い、まず家庭内のルータなど次の機器へ信号を送る。
+          区間ごとに、次の機器へ受け渡される。
+        </div>
+        <div class="arrow">↓</div>
+        <div>
+          <strong>⑤ Webサーバー側で逆向きに処理</strong><br>
+          Webサーバーでは、第1層から第4層へデータを受け取り、
+          最終的にWebサーバーのアプリケーションが要求内容を読む。
+        </div>
+        <div class="arrow">↓</div>
+        <div>
+          <strong>⑥ Webページを返信</strong><br>
+          HTML、CSS、画像などのデータが同じように階層を通って返信され、
+          ブラウザが画面を表示する。
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>10. カプセル化：各階層が情報を付け足す</h2>
+      <p>
+        送信側では、上位層から受け取ったデータに、
+        各階層が自分の仕事に必要な制御情報を付ける。
+        この処理を<strong>カプセル化</strong>という。
+      </p>
+
+      <div class="packet-flow">
+        <div><strong>アプリケーション層</strong>：HTTPなどのデータを作る</div>
+        <div class="arrow">↓</div>
+        <div><strong>トランスポート層</strong>：TCPヘッダやUDPヘッダを付ける</div>
+        <div class="arrow">↓</div>
+        <div><strong>インターネット層</strong>：IPヘッダを付ける</div>
+        <div class="arrow">↓</div>
+        <div><strong>ネットワークインターフェース層</strong>：フレーム用の情報を付けて信号として送る</div>
+      </div>
+
+      <div class="analogy">
+        <p class="analogy-title">宅配便で考える</p>
+        <p>
+          中身を箱に入れ、部署名を付け、住所ラベルを付け、
+          最後に配送車へ積み込むイメージ。
+          受信側では外側から順番に情報を確認し、中身を取り出す。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>11. 詳細一覧表</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>階層</th>
+              <th>正式名称</th>
+              <th>役割</th>
+              <th>代表例</th>
+              <th>宅配便の例え</th>
+              <th>試験ポイント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>第4層</td>
+              <td>アプリケーション層</td>
+              <td>利用者が使う通信サービス</td>
+              <td>HTTP、HTTPS、DNS、SMTP、FTP、SSH</td>
+              <td>注文・受付内容</td>
+              <td>OSIの第5～7層をまとめる</td>
+            </tr>
+            <tr>
+              <td>第3層</td>
+              <td>トランスポート層</td>
+              <td>相手のアプリケーションまで届ける</td>
+              <td>TCP、UDP、ポート番号</td>
+              <td>分割、箱番号、部署指定</td>
+              <td>TCPとUDPの違い、ポート番号</td>
+            </tr>
+            <tr>
+              <td>第2層</td>
+              <td>インターネット層</td>
+              <td>異なるネットワークを越えて運ぶ</td>
+              <td>IP、IPv4、IPv6、ICMP、ルータ</td>
+              <td>住所と長距離配送ルート</td>
+              <td>IPアドレス、ルーティング</td>
+            </tr>
+            <tr>
+              <td>第1層</td>
+              <td>ネットワークインターフェース層</td>
+              <td>次の機器まで実際に送る</td>
+              <td>Ethernet、Wi-Fi、MACアドレス、スイッチ</td>
+              <td>道路・トラック・営業所間配送</td>
+              <td>OSIの第1～2層をまとめる</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>12. 試験で狙われやすいポイント</h2>
+
+      <div class="exam-grid">
+        <div class="card">
+          <h3>TCPとUDP</h3>
+          <p>
+            TCPは接続、順序制御、再送などにより信頼性を高める。
+            UDPは確認処理が少なく、軽量で高速。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>IPは到着を保証しない</h3>
+          <p>
+            IPは宛先まで運ぶ役割だが、必ず届くことや順番どおり届くことは保証しない。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>IPアドレスとポート番号</h3>
+          <p>
+            IPアドレスはコンピュータやネットワーク上の宛先、
+            ポート番号はその中のアプリケーションの宛先。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>代表的なポート番号</h3>
+          <p>
+            HTTP 80、HTTPS 443、DNS 53、SSH 22、SMTP 25など。
+            番号とサービスの組み合わせが問われる。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>OSI参照モデルとの対応</h3>
+          <p>
+            TCP/IPは4階層、OSI参照モデルは7階層。
+            層の数とまとめ方が異なる。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ルータとスイッチ</h3>
+          <p>
+            ルータはIPアドレスを見てネットワーク間を中継する。
+            スイッチは主にMACアドレスを見て同一LAN内を中継する。
+          </p>
+        </div>
+      </div>
+
+      <div class="warning">
+        ポート番号は「アプリケーションそのもの」ではなく、
+        通信をどのアプリケーションやサービスへ渡すかを識別する番号。
+      </div>
+    </section>
+
+    <section>
+      <h2>13. よくある疑問</h2>
+
+      <div class="qa-list">
+        <div class="qa">
+          <p class="q">Q. TCP/IPはTCPとIPだけのこと？</p>
+          <p class="a">
+            いいえ。名前にはTCPとIPが使われているが、
+            一般にはHTTP、DNS、Ethernetなどを含むインターネット通信のプロトコル群全体を指す。
+          </p>
+        </div>
+
+        <div class="qa">
+          <p class="q">Q. どうしてTCPとIPを分けるの？</p>
+          <p class="a">
+            IPはコンピュータまで運び、TCPはその中のアプリケーションまで確実に届ける。
+            役割を分けることで、通信方式を柔軟に組み合わせられる。
+          </p>
+        </div>
+
+        <div class="qa">
+          <p class="q">Q. TCPを使えば絶対に通信が成功する？</p>
+          <p class="a">
+            いいえ。TCPは再送などで信頼性を高めるが、
+            通信回線の断絶や相手サーバーの停止まで解決できるわけではない。
+          </p>
+        </div>
+
+        <div class="qa">
+          <p class="q">Q. UDPは信頼性が低いなら、なぜ使うの？</p>
+          <p class="a">
+            再送や順番確認の待ち時間を減らせるため。
+            音声・映像配信、オンラインゲーム、DNSなど、
+           多少の欠落より速度や即時性を優先する場面に向く。
+          </p>
+        </div>
+
+        <div class="qa">
+          <p class="q">Q. TCP/IPの最下層の名前が参考書によって違うのはなぜ？</p>
+          <p class="a">
+            TCP/IPモデルには複数の整理方法があり、
+            ネットワークインターフェース層、リンク層、ネットワークアクセス層などの名称が使われるため。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>14. 似た用語との違い</h2>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h3>TCPとIP</h3>
+          <p><strong>TCP：</strong>相手のアプリケーションまで、順番や到着を管理して届ける。</p>
+          <p><strong>IP：</strong>IPアドレスを使い、相手のコンピュータまで運ぶ。</p>
+        </div>
+
+        <div class="compare-card">
+          <h3>TCPとUDP</h3>
+          <p><strong>TCP：</strong>信頼性重視。接続、到着確認、再送、順序制御を行う。</p>
+          <p><strong>UDP：</strong>速度・軽さ重視。確認処理を簡略化する。</p>
+        </div>
+
+        <div class="compare-card">
+          <h3>IPアドレスとMACアドレス</h3>
+          <p><strong>IPアドレス：</strong>ネットワークを越えるための論理的な宛先。</p>
+          <p><strong>MACアドレス：</strong>主に同じLAN内で次の機器へ届けるための識別情報。</p>
+        </div>
+
+        <div class="compare-card">
+          <h3>TCP/IPモデルとOSI参照モデル</h3>
+          <p><strong>TCP/IPモデル：</strong>実際のインターネット通信を整理する4階層モデル。</p>
+          <p><strong>OSI参照モデル：</strong>通信機能を理解・比較するための7階層の参照モデル。</p>
+        </div>
+
+        <div class="compare-card">
+          <h3>ルータとスイッチ</h3>
+          <p><strong>ルータ：</strong>異なるネットワーク間を、IPアドレスに基づいて中継する。</p>
+          <p><strong>スイッチ：</strong>主に同じLAN内を、MACアドレスに基づいて中継する。</p>
+        </div>
+
+        <div class="compare-card">
+          <h3>HTTPとTCP</h3>
+          <p><strong>HTTP：</strong>Webで何をどの形式で要求・応答するかを決める。</p>
+          <p><strong>TCP：</strong>HTTPのデータを相手のWebサーバーまで運ぶ土台になる。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>15. OSI参照モデルとの対応</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>TCP/IPモデル</th>
+              <th>主な役割</th>
+              <th>対応するOSI参照モデル</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>第4層：アプリケーション層</td>
+              <td>アプリケーションの通信サービス</td>
+              <td>第7層：アプリケーション層<br>第6層：プレゼンテーション層<br>第5層：セッション層</td>
+            </tr>
+            <tr>
+              <td>第3層：トランスポート層</td>
+              <td>アプリケーション間の通信</td>
+              <td>第4層：トランスポート層</td>
+            </tr>
+            <tr>
+              <td>第2層：インターネット層</td>
+              <td>ネットワーク間の通信</td>
+              <td>第3層：ネットワーク層</td>
+            </tr>
+            <tr>
+              <td>第1層：ネットワークインターフェース層</td>
+              <td>LAN内の転送と物理的な送信</td>
+              <td>第2層：データリンク層<br>第1層：物理層</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        この対応は理解のための代表的な整理。
+        実際のプロトコルが必ず一つの層だけにきれいに収まるとは限らない。
+      </div>
+    </section>
+
+    <section>
+      <h2>16. 関連ワード</h2>
+      <div class="related">
+        <span class="tag">プロトコル</span>
+        <span class="tag">カプセル化</span>
+        <span class="tag">TCP</span>
+        <span class="tag">UDP</span>
+        <span class="tag">IP</span>
+        <span class="tag">IPv4・IPv6</span>
+        <span class="tag">IPアドレス</span>
+        <span class="tag">ポート番号</span>
+        <span class="tag">MACアドレス</span>
+        <span class="tag">ルータ</span>
+        <span class="tag">スイッチ</span>
+        <span class="tag">DNS</span>
+        <span class="tag">HTTP・HTTPS</span>
+        <span class="tag">ICMP</span>
+        <span class="tag">Ethernet</span>
+        <span class="tag">Wi-Fi</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>17. 30秒で復習</h2>
+
+      <div class="final-box">
+        <p><strong>TCP/IPとは：</strong>インターネット通信で使うプロトコル群。</p>
+        <p><strong>4階層：</strong>ア・ト・イ・ネ</p>
+        <ul>
+          <li>第4層：アプリケーション層 — 何をやり取りするか</li>
+          <li>第3層：トランスポート層 — どのアプリへ渡すか</li>
+          <li>第2層：インターネット層 — どのコンピュータへ運ぶか</li>
+          <li>第1層：ネットワークインターフェース層 — 次の機器へどう送るか</li>
+        </ul>
+        <p><strong>TCP：</strong>順序、到着確認、再送などで信頼性を高める。</p>
+        <p><strong>IP：</strong>IPアドレスを使い、ネットワークを越えて運ぶ。</p>
+        <p><strong>最低限の組み合わせ：</strong>TCP・UDP＝トランスポート層、IP・ルータ＝インターネット層。</p>
+      </div>
+    </section>
+
+    <footer>
+      自分用学習ノート｜TCP/IP
+    </footer>
+  </main>
+</body>
+</html>
