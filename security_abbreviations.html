@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="情報セキュリティマネジメント試験に出てくる英語略称を、正式名称・英単語の意味・語呂合わせ・役割で覚えるスマホ向け教材" />
+  <title>セキュマネ英語略称 暗記ノート</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #667085;
+      --line: #dfe3ea;
+      --accent: #5b5bd6;
+      --accent-soft: #ececff;
+      --good: #147d64;
+      --good-soft: #e7f7f2;
+      --warn: #9a6700;
+      --warn-soft: #fff7df;
+      --danger: #b42318;
+      --danger-soft: #fff0ee;
+      --shadow: 0 10px 28px rgba(31, 41, 55, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #3f3f9f, #7777e8);
+      color: white;
+      padding: 42px 20px 34px;
+    }
+    .hero-inner, main { max-width: 980px; margin: 0 auto; }
+    h1 { margin: 0 0 10px; font-size: clamp(1.9rem, 7vw, 3.2rem); line-height: 1.2; }
+    .lead { margin: 0; max-width: 760px; opacity: .96; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      overflow-x: auto;
+      white-space: nowrap;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+    }
+    .nav a {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+    .nav a:hover { background: var(--accent-soft); }
+
+    main { padding: 22px 14px 64px; }
+    section { margin: 28px 0 38px; }
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 14px;
+      padding-left: 12px;
+      border-left: 6px solid var(--accent);
+    }
+    h3 { margin: 0 0 10px; font-size: 1.08rem; }
+
+    .intro, .tip, .warning, .memory-map {
+      border-radius: 18px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+    .intro { background: var(--card); box-shadow: var(--shadow); }
+    .tip { background: var(--good-soft); border: 1px solid #bfe9dc; }
+    .warning { background: var(--warn-soft); border: 1px solid #efdfa6; }
+    .memory-map { background: var(--accent-soft); border: 1px solid #d7d7ff; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 760px) {
+      .grid.two { grid-template-columns: repeat(2, 1fr); }
+      .grid.three { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 6px 16px rgba(31,41,55,.05);
+    }
+    .abbr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .abbr strong {
+      font-size: 1.55rem;
+      color: var(--accent);
+      letter-spacing: .04em;
+    }
+    .tag {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .official {
+      font-weight: 700;
+      color: #374151;
+      margin: 4px 0 10px;
+    }
+    .meaning {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .remember {
+      background: #f8f9ff;
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .example {
+      background: #f9fafb;
+      border: 1px dashed #cbd1da;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f0f1fb; }
+    tr:last-child td { border-bottom: none; }
+    .table-wrap { overflow-x: auto; border-radius: 16px; }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 15px;
+      margin: 10px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .choices label {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .choices label:hover { background: #f4f5fb; }
+    button {
+      appearance: none;
+      border: none;
+      background: var(--accent);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(.95); }
+    #result {
+      margin-top: 14px;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+    }
+
+    .top-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 16px 46px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <h1>セキュマネ英語略称 暗記ノート</h1>
+      <p class="lead">アルファベット3文字を記号として覚えず、正式名称・英単語の意味・語呂・役割をつなげて覚えるための教材です。</p>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="ページ内メニュー">
+    <a href="#howto">覚え方</a>
+    <a href="#defense">防御</a>
+    <a href="#network">通信</a>
+    <a href="#identity">認証</a>
+    <a href="#management">管理</a>
+    <a href="#continuity">継続</a>
+    <a href="#compare">比較</a>
+    <a href="#quiz">確認問題</a>
+  </nav>
+
+  <main>
+    <section id="howto">
+      <h2>まず、この順番で覚える</h2>
+      <div class="intro">
+        <p><strong>① 正式名称を見る → ② 英単語の意味を拾う → ③ 役割を一言にする → ④ 語呂で固定する</strong></p>
+        <p>例：IPSなら、<strong>Prevention＝防止</strong>が入っているので「止める側」。IDSは<strong>Detection＝検知</strong>なので「見つける側」です。</p>
+      </div>
+      <div class="memory-map">
+        <strong>覚えるときの合言葉</strong><br>
+        Detect＝見つける／Prevent＝防ぐ／Respond＝対応する／Manage＝管理する／Authenticate＝本人確認／Authorize＝許可する
+      </div>
+    </section>
+
+    <section id="defense">
+      <h2>攻撃を見つける・止める・調べる</h2>
+      <div class="grid two">
+        <article class="card">
+          <div class="abbr"><strong>IDS</strong><span class="tag">検知</span></div>
+          <div class="official">Intrusion Detection System<br>イントルージョン・ディテクション・システム</div>
+          <div class="meaning"><strong>Intrusion</strong>＝侵入、<strong>Detection</strong>＝検知</div>
+          <div class="remember"><strong>覚え方：</strong>DはDetectのD。「侵入を<strong>見つけて知らせる</strong>」</div>
+          <div class="example">不審な通信を検知して、管理者へ通知する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>IPS</strong><span class="tag">遮断</span></div>
+          <div class="official">Intrusion Prevention System<br>イントルージョン・プリベンション・システム</div>
+          <div class="meaning"><strong>Prevention</strong>＝防止</div>
+          <div class="remember"><strong>覚え方：</strong>PはPreventのP。「侵入を<strong>防いで止める</strong>」</div>
+          <div class="example">不正な通信を検知し、自動的に遮断する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>WAF</strong><span class="tag">Web専門</span></div>
+          <div class="official">Web Application Firewall<br>ウェブ・アプリケーション・ファイアウォール</div>
+          <div class="meaning"><strong>Web Application</strong>＝Webアプリ、<strong>Firewall</strong>＝防火壁</div>
+          <div class="remember"><strong>覚え方：</strong>名前どおり「Webアプリの前に立つ壁」</div>
+          <div class="example">SQLインジェクションやXSSなど、Webアプリへの攻撃を防ぐ。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>EDR</strong><span class="tag">端末で対応</span></div>
+          <div class="official">Endpoint Detection and Response<br>エンドポイント・ディテクション・アンド・レスポンス</div>
+          <div class="meaning"><strong>Endpoint</strong>＝PCなどの端末、<strong>Response</strong>＝対応</div>
+          <div class="remember"><strong>覚え方：</strong>「端末で見つけて、対応する」</div>
+          <div class="example">PCの不審な動作を検知し、調査・隔離する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>SIEM</strong><span class="tag">ログの司令塔</span></div>
+          <div class="official">Security Information and Event Management<br>セキュリティ・インフォメーション・アンド・イベント・マネジメント</div>
+          <div class="meaning"><strong>Information / Event</strong>＝情報・出来事、<strong>Management</strong>＝管理</div>
+          <div class="remember"><strong>覚え方：</strong>「セキュリティ情報とイベントをまとめて管理」</div>
+          <div class="example">複数機器のログを集め、相関分析して異常を見つける。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>SOC</strong><span class="tag">監視チーム</span></div>
+          <div class="official">Security Operation Center<br>セキュリティ・オペレーション・センター</div>
+          <div class="meaning"><strong>Operation</strong>＝運用、<strong>Center</strong>＝拠点</div>
+          <div class="remember"><strong>覚え方：</strong>「セキュリティ運用の監視室」</div>
+          <div class="example">24時間体制などでログ監視や初動対応を行う組織。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>CSIRT</strong><span class="tag">事故対応チーム</span></div>
+          <div class="official">Computer Security Incident Response Team<br>コンピュータ・セキュリティ・インシデント・レスポンス・チーム</div>
+          <div class="meaning"><strong>Incident Response</strong>＝事故対応</div>
+          <div class="remember"><strong>覚え方：</strong>最後が<strong>Response Team</strong>。「事故が起きたら動く班」</div>
+          <div class="example">インシデントの調査、封じ込め、復旧、再発防止を行う。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>UTM</strong><span class="tag">まとめて防御</span></div>
+          <div class="official">Unified Threat Management<br>ユニファイド・スレット・マネジメント</div>
+          <div class="meaning"><strong>Unified</strong>＝統合された、<strong>Threat</strong>＝脅威</div>
+          <div class="remember"><strong>覚え方：</strong>「脅威対策を1台に統合」</div>
+          <div class="example">FW、アンチウイルス、IDS/IPSなどをまとめて提供する。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="network">
+      <h2>通信・ネットワーク</h2>
+      <div class="grid two">
+        <article class="card">
+          <div class="abbr"><strong>VPN</strong><span class="tag">仮想専用線</span></div>
+          <div class="official">Virtual Private Network<br>バーチャル・プライベート・ネットワーク</div>
+          <div class="meaning"><strong>Virtual</strong>＝仮想、<strong>Private</strong>＝専用・私的</div>
+          <div class="remember"><strong>覚え方：</strong>「公共のネット上に、仮想の専用通路」</div>
+          <div class="example">自宅から社内ネットワークへ安全に接続する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>TLS</strong><span class="tag">通信暗号化</span></div>
+          <div class="official">Transport Layer Security<br>トランスポート・レイヤー・セキュリティ</div>
+          <div class="meaning"><strong>Transport Layer</strong>＝通信を運ぶ層、<strong>Security</strong>＝安全</div>
+          <div class="remember"><strong>覚え方：</strong>「運ぶ途中を安全にする」</div>
+          <div class="example">HTTPSの通信内容を暗号化する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>SSL</strong><span class="tag">旧称</span></div>
+          <div class="official">Secure Sockets Layer<br>セキュア・ソケッツ・レイヤー</div>
+          <div class="meaning"><strong>Secure</strong>＝安全な</div>
+          <div class="remember"><strong>覚え方：</strong>現在は主にTLS。SSLという呼び方だけ残る場面が多い。</div>
+          <div class="example">「SSL証明書」と呼ばれていても、実際の通信はTLSであることが多い。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>DNS</strong><span class="tag">名前→住所</span></div>
+          <div class="official">Domain Name System<br>ドメイン・ネーム・システム</div>
+          <div class="meaning"><strong>Domain Name</strong>＝Web上の名前</div>
+          <div class="remember"><strong>覚え方：</strong>「ドメイン名をIPアドレスへ案内する住所録」</div>
+          <div class="example">example.comをIPアドレスへ変換する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>DHCP</strong><span class="tag">IP自動配布</span></div>
+          <div class="official">Dynamic Host Configuration Protocol<br>ダイナミック・ホスト・コンフィギュレーション・プロトコル</div>
+          <div class="meaning"><strong>Dynamic</strong>＝動的、<strong>Configuration</strong>＝設定</div>
+          <div class="remember"><strong>覚え方：</strong>「端末設定を動的に配る」</div>
+          <div class="example">PCへIPアドレスなどを自動設定する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>IPsec</strong><span class="tag">IP通信を保護</span></div>
+          <div class="official">Internet Protocol Security<br>インターネット・プロトコル・セキュリティ</div>
+          <div class="meaning"><strong>IP</strong>通信を<strong>Security</strong>で守る</div>
+          <div class="remember"><strong>覚え方：</strong>「IP＋security」</div>
+          <div class="example">VPNなどで、IPパケットを暗号化・認証する。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="identity">
+      <h2>本人確認・権限・証明書</h2>
+      <div class="grid two">
+        <article class="card">
+          <div class="abbr"><strong>MFA</strong><span class="tag">複数要素</span></div>
+          <div class="official">Multi-Factor Authentication<br>マルチ・ファクター・オーセンティケーション</div>
+          <div class="meaning"><strong>Multi</strong>＝複数、<strong>Factor</strong>＝要素、<strong>Authentication</strong>＝認証</div>
+          <div class="remember"><strong>覚え方：</strong>「複数の要素で本人確認」</div>
+          <div class="example">パスワード＋スマホ認証など。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>SSO</strong><span class="tag">一度でログイン</span></div>
+          <div class="official">Single Sign-On<br>シングル・サインオン</div>
+          <div class="meaning"><strong>Single</strong>＝一度・単一</div>
+          <div class="remember"><strong>覚え方：</strong>「1回サインインしたら複数サービスへ」</div>
+          <div class="example">社内ポータルへログイン後、複数の業務システムを利用する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>OTP</strong><span class="tag">一回限り</span></div>
+          <div class="official">One-Time Password<br>ワンタイム・パスワード</div>
+          <div class="meaning"><strong>One-Time</strong>＝一度きり</div>
+          <div class="remember"><strong>覚え方：</strong>そのまま「一回だけのパスワード」</div>
+          <div class="example">認証アプリに表示される短時間だけ有効なコード。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>PKI</strong><span class="tag">公開鍵の基盤</span></div>
+          <div class="official">Public Key Infrastructure<br>パブリック・キー・インフラストラクチャ</div>
+          <div class="meaning"><strong>Public Key</strong>＝公開鍵、<strong>Infrastructure</strong>＝基盤</div>
+          <div class="remember"><strong>覚え方：</strong>「公開鍵を安全に使うための社会基盤」</div>
+          <div class="example">電子証明書、認証局、失効管理などを含む仕組み。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>CA</strong><span class="tag">証明書を発行</span></div>
+          <div class="official">Certificate Authority<br>サーティフィケート・オーソリティ</div>
+          <div class="meaning"><strong>Certificate</strong>＝証明書、<strong>Authority</strong>＝権威ある機関</div>
+          <div class="remember"><strong>覚え方：</strong>「証明書を出す公的な係」</div>
+          <div class="example">電子証明書を発行し、公開鍵の持ち主を保証する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>CRL</strong><span class="tag">失効一覧</span></div>
+          <div class="official">Certificate Revocation List<br>サーティフィケート・レボケーション・リスト</div>
+          <div class="meaning"><strong>Revocation</strong>＝取消し・失効、<strong>List</strong>＝一覧</div>
+          <div class="remember"><strong>覚え方：</strong>「使ってはいけない証明書リスト」</div>
+          <div class="example">秘密鍵漏えいなどで無効になった証明書を掲載する。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="management">
+      <h2>組織・管理・監査</h2>
+      <div class="grid two">
+        <article class="card">
+          <div class="abbr"><strong>ISMS</strong><span class="tag">管理の仕組み</span></div>
+          <div class="official">Information Security Management System<br>インフォメーション・セキュリティ・マネジメント・システム</div>
+          <div class="meaning">情報セキュリティを継続的に<strong>Management</strong>する仕組み</div>
+          <div class="remember"><strong>覚え方：</strong>「情報セキュリティを会社として回す仕組み」</div>
+          <div class="example">方針、リスク評価、対策、監査、改善を継続する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>PDCA</strong><span class="tag">改善サイクル</span></div>
+          <div class="official">Plan・Do・Check・Act<br>プラン・ドゥ・チェック・アクト</div>
+          <div class="meaning">計画・実行・評価・改善</div>
+          <div class="remember"><strong>覚え方：</strong>「計画して、やって、見て、直す」</div>
+          <div class="example">ISMSを継続的に改善する基本サイクル。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>SLA</strong><span class="tag">サービス品質の約束</span></div>
+          <div class="official">Service Level Agreement<br>サービス・レベル・アグリーメント</div>
+          <div class="meaning"><strong>Agreement</strong>＝合意・契約</div>
+          <div class="remember"><strong>覚え方：</strong>「サービス水準についての約束」</div>
+          <div class="example">稼働率99.9％、問い合わせ対応時間などを定める。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>NDA</strong><span class="tag">秘密保持</span></div>
+          <div class="official">Non-Disclosure Agreement<br>ノン・ディスクロージャー・アグリーメント</div>
+          <div class="meaning"><strong>Disclosure</strong>＝開示、<strong>Non</strong>＝しない</div>
+          <div class="remember"><strong>覚え方：</strong>「開示しない約束」</div>
+          <div class="example">業務で知った秘密情報を第三者へ漏らさない契約。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>PII</strong><span class="tag">個人を特定</span></div>
+          <div class="official">Personally Identifiable Information<br>パーソナリー・アイデンティファイアブル・インフォメーション</div>
+          <div class="meaning"><strong>Identifiable</strong>＝特定できる</div>
+          <div class="remember"><strong>覚え方：</strong>「その人だと識別できる情報」</div>
+          <div class="example">氏名、住所、メールアドレスなど、個人を識別できる情報。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>DLP</strong><span class="tag">漏えい防止</span></div>
+          <div class="official">Data Loss Prevention<br>データ・ロス・プリベンション</div>
+          <div class="meaning"><strong>Data Loss</strong>＝データ損失・流出、<strong>Prevention</strong>＝防止</div>
+          <div class="remember"><strong>覚え方：</strong>「データが外へ出るのを防ぐ」</div>
+          <div class="example">機密ファイルのメール添付やUSBコピーを制御する。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="continuity">
+      <h2>事業継続・復旧</h2>
+      <div class="grid two">
+        <article class="card">
+          <div class="abbr"><strong>BCP</strong><span class="tag">継続の計画</span></div>
+          <div class="official">Business Continuity Plan<br>ビジネス・コンティニュイティ・プラン</div>
+          <div class="meaning"><strong>Business Continuity</strong>＝事業継続、<strong>Plan</strong>＝計画</div>
+          <div class="remember"><strong>覚え方：</strong>「災害時にも事業を続ける計画」</div>
+          <div class="example">代替拠点、連絡網、優先業務、復旧手順などを決める。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>BCM</strong><span class="tag">継続の管理</span></div>
+          <div class="official">Business Continuity Management<br>ビジネス・コンティニュイティ・マネジメント</div>
+          <div class="meaning"><strong>Management</strong>＝管理・運用</div>
+          <div class="remember"><strong>覚え方：</strong>BCPを作るだけでなく、訓練・見直しまで回す。</div>
+          <div class="example">BCPを継続的に整備し、訓練し、改善する活動全体。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>RTO</strong><span class="tag">いつまでに復旧</span></div>
+          <div class="official">Recovery Time Objective<br>リカバリー・タイム・オブジェクティブ</div>
+          <div class="meaning"><strong>Recovery Time</strong>＝復旧時間、<strong>Objective</strong>＝目標</div>
+          <div class="remember"><strong>覚え方：</strong>TはTime。「復旧まで何時間？」</div>
+          <div class="example">障害発生から4時間以内に業務を再開する。</div>
+        </article>
+
+        <article class="card">
+          <div class="abbr"><strong>RPO</strong><span class="tag">どこまで戻す</span></div>
+          <div class="official">Recovery Point Objective<br>リカバリー・ポイント・オブジェクティブ</div>
+          <div class="meaning"><strong>Recovery Point</strong>＝復旧時点</div>
+          <div class="remember"><strong>覚え方：</strong>PはPoint。「何時点のデータまで戻せればよい？」</div>
+          <div class="example">最大1時間前のデータまで戻せればよい。</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="compare">
+      <h2>紛らわしい用語を一気に比較</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>用語</th><th>決め手になる英単語</th><th>一言で</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>IDS</td><td>Detection</td><td>見つけて知らせる</td></tr>
+            <tr><td>IPS</td><td>Prevention</td><td>見つけて止める</td></tr>
+            <tr><td>EDR</td><td>Endpoint / Response</td><td>PCで検知・対応</td></tr>
+            <tr><td>SIEM</td><td>Information / Event / Management</td><td>ログを集めて分析</td></tr>
+            <tr><td>SOC</td><td>Operation Center</td><td>監視する組織</td></tr>
+            <tr><td>CSIRT</td><td>Incident Response Team</td><td>事故対応チーム</td></tr>
+            <tr><td>BCP</td><td>Plan</td><td>事業継続の計画</td></tr>
+            <tr><td>BCM</td><td>Management</td><td>計画を運用・改善</td></tr>
+            <tr><td>RTO</td><td>Time</td><td>復旧までの時間</td></tr>
+            <tr><td>RPO</td><td>Point</td><td>戻すデータの時点</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip">
+        <strong>最優先で覚える4組</strong><br>
+        IDSとIPS／SOCとCSIRT／BCPとBCM／RTOとRPO
+      </div>
+
+      <details>
+        <summary>IDSとIPSの覚え分け</summary>
+        <p><strong>D＝Detection＝検知</strong>、<strong>P＝Prevention＝防止</strong>。問題文に「通知」ならIDS、「遮断」ならIPSを疑います。</p>
+      </details>
+      <details>
+        <summary>SOCとCSIRTの覚え分け</summary>
+        <p><strong>SOCは日常的に監視</strong>、<strong>CSIRTは事故が起きたときに対応</strong>。見張り番と消防隊の違いです。</p>
+      </details>
+      <details>
+        <summary>RTOとRPOの覚え分け</summary>
+        <p><strong>T＝Time＝時間</strong>、<strong>P＝Point＝時点</strong>。RTOは「何時間で復旧」、RPOは「何時点まで戻す」です。</p>
+      </details>
+    </section>
+
+    <section id="quiz">
+      <h2>確認問題</h2>
+      <p>見出しから答えを推測できないよう、問題文だけで判断してください。</p>
+
+      <form id="quizForm">
+        <div class="quiz-card">
+          <h3>第1問</h3>
+          <p>不審な通信を検知し、管理者へ通知するが、自動遮断はしない仕組みはどれか。</p>
+          <div class="choices">
+            <label><input type="radio" name="q1" value="a"> A. IPS</label>
+            <label><input type="radio" name="q1" value="b"> B. IDS</label>
+            <label><input type="radio" name="q1" value="c"> C. WAF</label>
+            <label><input type="radio" name="q1" value="d"> D. EDR</label>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>第2問</h3>
+          <p>複数の機器からログを集め、関連付けて分析する仕組みはどれか。</p>
+          <div class="choices">
+            <label><input type="radio" name="q2" value="a"> A. SIEM</label>
+            <label><input type="radio" name="q2" value="b"> B. SSO</label>
+            <label><input type="radio" name="q2" value="c"> C. SLA</label>
+            <label><input type="radio" name="q2" value="d"> D. SSL</label>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>第3問</h3>
+          <p>障害発生後、業務を何時間以内に再開するかという目標を表すものはどれか。</p>
+          <div class="choices">
+            <label><input type="radio" name="q3" value="a"> A. RPO</label>
+            <label><input type="radio" name="q3" value="b"> B. RTO</label>
+            <label><input type="radio" name="q3" value="c"> C. BCP</label>
+            <label><input type="radio" name="q3" value="d"> D. BCM</label>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>第4問</h3>
+          <p>インシデントの調査、封じ込め、復旧、再発防止を担当するチームはどれか。</p>
+          <div class="choices">
+            <label><input type="radio" name="q4" value="a"> A. SOC</label>
+            <label><input type="radio" name="q4" value="b"> B. CSIRT</label>
+            <label><input type="radio" name="q4" value="c"> C. CA</label>
+            <label><input type="radio" name="q4" value="d"> D. UTM</label>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>第5問</h3>
+          <p>パスワードに加えてスマホ認証など、複数の要素で本人確認を行う方式はどれか。</p>
+          <div class="choices">
+            <label><input type="radio" name="q5" value="a"> A. MFA</label>
+            <label><input type="radio" name="q5" value="b"> B. VPN</label>
+            <label><input type="radio" name="q5" value="c"> C. DNS</label>
+            <label><input type="radio" name="q5" value="d"> D. DLP</label>
+          </div>
+        </div>
+
+        <button type="button" onclick="gradeQuiz()">採点する</button>
+        <div id="result" aria-live="polite">まだ採点していません。</div>
+      </form>
+    </section>
+
+    <section>
+      <h2>最後に</h2>
+      <div class="warning">
+        略称を見て思い出せないときは、まず最後の英単語を探してください。<br>
+        <strong>Detection、Prevention、Response、Management、Plan、Time、Point</strong>は特に強い手掛かりです。
+      </div>
+      <a class="top-link" href="#top">↑ ページ上部へ戻る</a>
+    </section>
+  </main>
+
+  <footer>
+    情報セキュリティマネジメント試験・基本情報技術者試験の復習用
+  </footer>
+
+  <script>
+    function gradeQuiz() {
+      const answers = { q1: 'b', q2: 'a', q3: 'b', q4: 'b', q5: 'a' };
+      let score = 0;
+      let unanswered = 0;
+      for (const [name, correct] of Object.entries(answers)) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        if (!selected) {
+          unanswered++;
+        } else if (selected.value === correct) {
+          score++;
+        }
+      }
+      const result = document.getElementById('result');
+      if (unanswered > 0) {
+        result.textContent = `未回答が${unanswered}問あります。現在 ${score}/5問正解です。`;
+      } else if (score === 5) {
+        result.textContent = '5/5問正解！ 略称と役割がしっかり結び付いています。';
+      } else {
+        result.textContent = `${score}/5問正解です。間違えた用語は、正式名称の英単語から見直してみましょう。`;
+      }
+    }
+  </script>
+</body>
+</html>
